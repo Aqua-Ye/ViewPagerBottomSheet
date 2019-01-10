@@ -9,7 +9,6 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
     defaultPublishConfig 'debug'
-    publishNonDefault true
 
     defaultConfig {
         minSdkVersion 14
