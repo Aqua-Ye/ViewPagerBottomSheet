@@ -16,8 +16,6 @@
 
 package biz.laenger.android.vpbs;
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Parcel;
@@ -45,6 +43,8 @@ import android.view.ViewParent;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
+
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 
 /**
@@ -139,6 +139,8 @@ public class ViewPagerBottomSheetBehavior<V extends View> extends CoordinatorLay
 
     private boolean mSkipCollapsed;
 
+    private float mCollapseRatio;
+
     @State
     int mState = STATE_COLLAPSED;
 
@@ -191,6 +193,7 @@ public class ViewPagerBottomSheetBehavior<V extends View> extends CoordinatorLay
         }
         setHideable(a.getBoolean(R.styleable.ViewPagerBottomSheetBehavior_layout_vpbs_behavior_hideable, false));
         setSkipCollapsed(a.getBoolean(R.styleable.ViewPagerBottomSheetBehavior_layout_vpbs_behavior_skipCollapsed, false));
+        setCollapseRatio(a.getFraction(R.styleable.ViewPagerBottomSheetBehavior_layout_vpbs_behavior_collapseRatio, 1, 1, 0f));
         a.recycle();
         ViewConfiguration configuration = ViewConfiguration.get(context);
         mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
@@ -407,8 +410,14 @@ public class ViewPagerBottomSheetBehavior<V extends View> extends CoordinatorLay
                 targetState = STATE_COLLAPSED;
             }
         } else {
-            top = mMaxOffset;
-            targetState = STATE_COLLAPSED;
+            int currentTop = child.getTop();
+            if (currentTop > mCollapseRatio * mMaxOffset) {
+                top = mMaxOffset;
+                targetState = STATE_COLLAPSED;
+            } else {
+                top = mMinOffset;
+                targetState = STATE_EXPANDED;
+            }
         }
         if (mViewDragHelper.smoothSlideViewTo(child, child.getLeft(), top)) {
             setStateInternal(STATE_SETTLING);
@@ -513,6 +522,14 @@ public class ViewPagerBottomSheetBehavior<V extends View> extends CoordinatorLay
      */
     public boolean getSkipCollapsed() {
         return mSkipCollapsed;
+    }
+
+    public void setCollapseRatio(float collapseRatio) {
+        mCollapseRatio = collapseRatio;
+    }
+
+    public float getCollapseRatio() {
+        return mCollapseRatio;
     }
 
     /**
@@ -707,8 +724,14 @@ public class ViewPagerBottomSheetBehavior<V extends View> extends CoordinatorLay
                     targetState = STATE_COLLAPSED;
                 }
             } else {
-                top = mMaxOffset;
-                targetState = STATE_COLLAPSED;
+                int currentTop = releasedChild.getTop();
+                if (currentTop > mCollapseRatio * mMaxOffset) {
+                    top = mMaxOffset;
+                    targetState = STATE_COLLAPSED;
+                } else {
+                    top = mMinOffset;
+                    targetState = STATE_EXPANDED;
+                }
             }
             if (mViewDragHelper.settleCapturedViewAt(releasedChild.getLeft(), top)) {
                 setStateInternal(STATE_SETTLING);

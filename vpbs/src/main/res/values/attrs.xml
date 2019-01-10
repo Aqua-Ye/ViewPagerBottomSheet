@@ -6,6 +6,6 @@
         </attr>
         <attr format="boolean" name="vpbs_behavior_hideable"/>
         <attr format="boolean" name="vpbs_behavior_skipCollapsed"/>
-        <attr format="float" name="vpbs_behavior_collapseRatio"/>
+        <attr format="fraction" name="vpbs_behavior_collapseRatio"/>
     </declare-styleable>
 </resources>
