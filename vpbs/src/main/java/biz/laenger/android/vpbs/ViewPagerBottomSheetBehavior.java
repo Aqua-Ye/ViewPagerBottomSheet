@@ -181,17 +181,16 @@ public class ViewPagerBottomSheetBehavior<V extends View> extends CoordinatorLay
     public ViewPagerBottomSheetBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.obtainStyledAttributes(attrs,
-                R.styleable.BottomSheetBehavior_Layout);
-        TypedValue value = a.peekValue(R.styleable.BottomSheetBehavior_Layout_behavior_peekHeight);
+                R.styleable.ViewPagerBottomSheetBehavior_layout);
+        TypedValue value = a.peekValue(R.styleable.ViewPagerBottomSheetBehavior_layout_vpbs_behavior_peekHeight);
         if (value != null && value.data == PEEK_HEIGHT_AUTO) {
             setPeekHeight(value.data);
         } else {
             setPeekHeight(a.getDimensionPixelSize(
-                    R.styleable.BottomSheetBehavior_Layout_behavior_peekHeight, PEEK_HEIGHT_AUTO));
+                    R.styleable.ViewPagerBottomSheetBehavior_layout_vpbs_behavior_peekHeight, PEEK_HEIGHT_AUTO));
         }
-        setHideable(a.getBoolean(R.styleable.BottomSheetBehavior_Layout_behavior_hideable, false));
-        setSkipCollapsed(a.getBoolean(R.styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed,
-                false));
+        setHideable(a.getBoolean(R.styleable.ViewPagerBottomSheetBehavior_layout_vpbs_behavior_hideable, false));
+        setSkipCollapsed(a.getBoolean(R.styleable.ViewPagerBottomSheetBehavior_layout_vpbs_behavior_skipCollapsed, false));
         a.recycle();
         ViewConfiguration configuration = ViewConfiguration.get(context);
         mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();

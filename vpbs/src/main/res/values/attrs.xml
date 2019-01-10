@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ViewPagerBottomSheetBehavior_layout">
+        <attr format="dimension" name="vpbs_behavior_peekHeight">
+            <enum name="auto" value="-1"/>
+        </attr>
+        <attr format="boolean" name="vpbs_behavior_hideable"/>
+        <attr format="boolean" name="vpbs_behavior_skipCollapsed"/>
+        <attr format="float" name="vpbs_behavior_collapseRatio"/>
+    </declare-styleable>
+</resources>
