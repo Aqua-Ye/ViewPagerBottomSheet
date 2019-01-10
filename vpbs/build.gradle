@@ -64,4 +64,4 @@ def buildVersionSuffix() {
     return 'local'
 }
 
-apply from: 'publish.gradle'
+//apply from: 'publish.gradle'
