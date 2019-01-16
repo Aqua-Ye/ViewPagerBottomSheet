@@ -57,11 +57,11 @@ def buildLibraryArchiveBaseName(variant) {
     return "${project.name}_${android.defaultConfig.versionName}_${buildVersionSuffix()}-${variant.baseName}"
 }
 
-def buildVersionSuffix() {
-    if (runningOnJenkins) {
-        return "${System.getenv('BUILD_NUMBER').trim()}_${System.getenv('GIT_COMMIT').subSequence(0, 6).trim()}"
-    }
-    return 'local'
-}
+//def buildVersionSuffix() {
+//    if (runningOnJenkins) {
+//        return "${System.getenv('BUILD_NUMBER').trim()}_${System.getenv('GIT_COMMIT').subSequence(0, 6).trim()}"
+//    }
+//    return 'local'
+//}
 
 //apply from: 'publish.gradle'
