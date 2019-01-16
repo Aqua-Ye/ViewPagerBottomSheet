@@ -33,29 +33,29 @@ dependencies {
     implementation "com.android.support:design:${supportVersion}"
 }
 
-android.libraryVariants.all { variant ->
-    renameLibraryVariantOutput(variant)
+//android.libraryVariants.all { variant ->
+//    renameLibraryVariantOutput(variant)
+//
+//    def sourcesJarTaskName = "generate${variant.name.capitalize()}SourcesJar"
+//
+//    task(sourcesJarTaskName, type: Jar) {
+//        classifier = 'sources'
+//        from variant.sourceSets*.java.srcDirs.flatten()
+//        baseName = buildLibraryArchiveBaseName(variant)
+//    }
+//}
 
-    def sourcesJarTaskName = "generate${variant.name.capitalize()}SourcesJar"
+//def renameLibraryVariantOutput(variant) {
+//    variant.outputs.all { output ->
+//        if (outputFileName.endsWith('.aar')) {
+//            outputFileName = "${buildLibraryArchiveBaseName(variant)}.aar"
+//        }
+//    }
+//}
 
-    task(sourcesJarTaskName, type: Jar) {
-        classifier = 'sources'
-        from variant.sourceSets*.java.srcDirs.flatten()
-        baseName = buildLibraryArchiveBaseName(variant)
-    }
-}
-
-def renameLibraryVariantOutput(variant) {
-    variant.outputs.all { output ->
-        if (outputFileName.endsWith('.aar')) {
-            outputFileName = "${buildLibraryArchiveBaseName(variant)}.aar"
-        }
-    }
-}
-
-def buildLibraryArchiveBaseName(variant) {
-    return "${project.name}_${android.defaultConfig.versionName}_${buildVersionSuffix()}-${variant.baseName}"
-}
+//def buildLibraryArchiveBaseName(variant) {
+//    return "${project.name}_${android.defaultConfig.versionName}_${buildVersionSuffix()}-${variant.baseName}"
+//}
 
 //def buildVersionSuffix() {
 //    if (runningOnJenkins) {
