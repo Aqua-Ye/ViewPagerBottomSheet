@@ -49,5 +49,5 @@ task clean(type: Delete) {
 }
 
 def getEnvOrProperty(String name) {
-    return System.getenv(name) ?: project.hasProperty(name) ? project[name] : '';
+    return System.getenv(name) ?: project.hasProperty(name) ? project[name] : ''
 }

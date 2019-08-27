@@ -108,7 +108,7 @@ public class ViewPagerBottomSheetDialog extends AppCompatDialog {
         final FrameLayout container = (FrameLayout) View.inflate(getContext(),
                 R.layout.design_view_pager_bottom_sheet_dialog, null);
         final CoordinatorLayout coordinator =
-                (CoordinatorLayout) container.findViewById(R.id.coordinator);
+                container.findViewById(R.id.coordinator);
         if (layoutResId != 0 && view == null) {
             view = getLayoutInflater().inflate(layoutResId, coordinator, false);
         }

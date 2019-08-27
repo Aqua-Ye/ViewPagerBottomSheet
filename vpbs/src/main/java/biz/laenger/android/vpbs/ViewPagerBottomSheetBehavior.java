@@ -633,9 +633,7 @@ public class ViewPagerBottomSheetBehavior<V extends View> extends CoordinatorLay
             }
 
             View scrollingChild = findScrollingChild(currentViewPagerChild);
-            if (scrollingChild != null) {
-                return scrollingChild;
-            }
+            return scrollingChild;
         } else if (view instanceof ViewGroup) {
             ViewGroup group = (ViewGroup) view;
             for (int i = 0, count = group.getChildCount(); i < count; i++) {
